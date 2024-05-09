@@ -1,0 +1,798 @@
+--
+-- PostgreSQL database dump
+--
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: customers; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE customers (
+    customer_id integer NOT NULL,
+    company_name character varying(40) NOT NULL,
+    contact_name character varying(50),
+    contact_title character varying(50),
+    address character varying(60),
+    city character varying(60),
+    region character varying(60),
+    postal_code character varying(10),
+    country character varying(60),
+    phone character varying(24),
+    fax character varying(24),
+    PRIMARY KEY (customer_id)
+);
+
+--
+-- Name: us_states; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE us_states (
+    state_id smallint PRIMARY KEY,
+    state_name character varying(100),
+    state_abbr character varying(2),
+    state_region character varying(50)
+);
+
+
+-- Name: accounts; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+
+CREATE TABLE accounts (
+    account_id serial PRIMARY KEY,
+    account_name character varying(50) NOT NULL,
+    account_type character varying(20) NOT NULL,
+    balance numeric(12, 2) NOT NULL,
+    opening_date date NOT NULL,
+    contact_email character varying(100),
+    contact_phone character varying(60)
+);
+
+
+-- Name: transactions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+
+CREATE TABLE transactions (
+    transaction_id serial PRIMARY KEY,
+    account_id integer NOT NULL,
+    transaction_date date NOT NULL,
+    transaction_type character varying(10) NOT NULL,
+    amount numeric(12, 2) NOT NULL,
+    description text,
+    FOREIGN KEY (account_id) REFERENCES accounts (account_id) ON DELETE CASCADE
+);
+
+
+-- Name: invoices; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+
+CREATE TABLE invoices (
+    invoice_id serial PRIMARY KEY,
+    customer_id integer NOT NULL,
+    invoice_date date NOT NULL,
+    due_date date NOT NULL,
+    total_amount numeric(12, 2) NOT NULL,
+    status character varying(20) NOT NULL,
+    FOREIGN KEY (customer_id) REFERENCES customers (customer_id));
+
+
+-- Name: vendors; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+
+CREATE TABLE vendors (
+    vendor_id serial PRIMARY KEY,
+    vendor_name character varying(50) NOT NULL,
+    contact_email character varying(100),
+    contact_phone character varying(60),
+    address character varying(100),
+    city character varying(50),
+    state_id smallint,
+    postal_code character varying(10),
+    country character varying(50),
+    FOREIGN KEY (state_id) REFERENCES us_states (state_id) ON DELETE SET NULL
+);
+
+--
+-- Name: employees; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE employees (
+    employee_id smallint PRIMARY KEY,
+    last_name character varying(20) NOT NULL,
+    first_name character varying(10) NOT NULL,
+    title character varying(60),
+    title_of_courtesy character varying(25),
+    birth_date date,
+    hire_date date,
+    address character varying(60),
+    city character varying(60),
+    region character varying(60),
+    postal_code character varying(10),
+    country character varying(60),
+    home_phone character varying(24),
+    extension character varying(4),
+    photo bytea,
+    notes text,
+    reports_to smallint,
+    photo_path character varying(255)
+);
+
+
+-- Name: expenses; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+
+CREATE TABLE expenses (
+    expense_id serial PRIMARY KEY,
+    vendor_id integer NOT NULL,
+    expense_date date NOT NULL,
+    amount numeric(12, 2) NOT NULL,
+    description text,
+    FOREIGN KEY (vendor_id) REFERENCES vendors (vendor_id) ON DELETE CASCADE
+);
+
+
+-- Name: budgets; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+
+CREATE TABLE budgets (
+    budget_id serial PRIMARY KEY,
+    department character varying(50) NOT NULL,
+    year integer NOT NULL,
+    budget_amount numeric(12, 2) NOT NULL
+    );
+
+
+-- Name: payroll; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+
+CREATE TABLE payroll (
+    payroll_id serial PRIMARY KEY,
+    employee_id integer NOT NULL,
+    pay_date date NOT NULL,
+    amount numeric(12, 2) NOT NULL,
+    description text,
+    FOREIGN KEY (employee_id) REFERENCES employees (employee_id) ON DELETE CASCADE
+);
+-- Name: departments; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+
+CREATE TABLE departments (
+    department_id serial PRIMARY KEY,
+    department_name character varying(50) NOT NULL,
+    manager_id integer,
+    location character varying(100)
+);
+
+
+-- Name: loans; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+
+CREATE TABLE loans (
+    loan_id serial PRIMARY KEY,
+    customer_id integer NOT NULL,
+    loan_amount numeric(12, 2) NOT NULL,
+    loan_date date NOT NULL,
+    interest_rate numeric(5, 2) NOT NULL,
+    status character varying(20) NOT NULL);
+
+
+-- Name: investments; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+
+CREATE TABLE investments (
+    investment_id serial PRIMARY KEY,
+    account_id integer NOT NULL,
+    investment_name character varying(100) NOT NULL,
+    investment_type character varying(50) NOT NULL,
+    purchase_date date NOT NULL,
+    amount numeric(12, 2) NOT NULL,
+    FOREIGN KEY (account_id) REFERENCES accounts (account_id) ON DELETE CASCADE
+);
+
+
+-- Name: insurance_policies; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+
+CREATE TABLE insurance_policies (
+    policy_id serial PRIMARY KEY,
+    customer_id integer NOT NULL,
+    policy_holder_name character varying(100) NOT NULL,
+    policy_type character varying(50) NOT NULL,
+    premium numeric(12, 2) NOT NULL,
+    start_date date NOT NULL,
+    end_date date NOT NULL,
+    FOREIGN KEY (customer_id) REFERENCES customers (customer_id) ON DELETE CASCADE
+);
+
+
+-- Name: tax_records; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+
+CREATE TABLE tax_records (
+    record_id serial PRIMARY KEY,
+    customer_id integer NOT NULL,
+    tax_year integer NOT NULL,
+    total_income numeric(12, 2) NOT NULL,
+    tax_paid numeric(12, 2) NOT NULL,
+    FOREIGN KEY (customer_id) REFERENCES customers (customer_id) ON DELETE CASCADE
+);
+
+-- Name: clients; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+
+CREATE TABLE clients (
+    client_id serial PRIMARY KEY,
+    client_name character varying(100) NOT NULL,
+    contact_name character varying(50),
+    contact_email character varying(100),
+    contact_phone character varying(60),
+    address character varying(100),
+    city character varying(50),
+    state_id smallint,
+    postal_code character varying(10),
+    country character varying(50),
+    FOREIGN KEY (state_id) REFERENCES us_states (state_id) ON DELETE SET NULL
+);
+
+-- Name: contracts; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+
+CREATE TABLE contracts (
+    contract_id serial PRIMARY KEY,
+    contract_name character varying(100) NOT NULL,
+    client_id integer NOT NULL,
+    start_date date NOT NULL,
+    end_date date NOT NULL,
+    amount numeric(12, 2) NOT NULL,
+    status character varying(20) NOT NULL,
+    FOREIGN KEY (client_id) REFERENCES clients (client_id) ON DELETE CASCADE
+);
+
+
+-- Name: contract_payments; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+
+CREATE TABLE contract_payments (
+    payment_id serial PRIMARY KEY,
+    contract_id integer NOT NULL,
+    payment_date date NOT NULL,
+    amount numeric(12, 2) NOT NULL,
+    FOREIGN KEY (contract_id) REFERENCES contracts (contract_id) ON DELETE CASCADE
+);
+
+
+-- Name: contract_services; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+
+CREATE TABLE contract_services (
+    service_id serial PRIMARY KEY,
+    contract_id integer NOT NULL,
+    service_name character varying(100) NOT NULL,
+    description text,
+    rate numeric(12, 2) NOT NULL,
+    FOREIGN KEY (contract_id) REFERENCES contracts (contract_id) ON DELETE CASCADE
+);
+
+
+-- Name: contract_employees; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+
+CREATE TABLE contract_employees (
+    contract_employee_id serial PRIMARY KEY,
+    contract_id integer NOT NULL,
+    employee_id integer NOT NULL,
+    start_date date NOT NULL,
+    end_date date,
+    FOREIGN KEY (contract_id) REFERENCES contracts (contract_id) ON DELETE CASCADE,
+    FOREIGN KEY (employee_id) REFERENCES employees (employee_id) ON DELETE CASCADE
+);
+
+
+-- Name: contract_attachments; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+
+CREATE TABLE contract_attachments (
+    attachment_id serial PRIMARY KEY,
+    contract_id integer NOT NULL,
+    attachment_name character varying(100) NOT NULL,
+    attachment_file bytea NOT NULL,
+    FOREIGN KEY (contract_id) REFERENCES contracts (contract_id) ON DELETE CASCADE
+);
+-- Name: schedules; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+
+CREATE TABLE schedules (
+    schedule_id serial PRIMARY KEY,
+    schedule_name character varying(100) NOT NULL,
+    start_date date NOT NULL,
+    end_date date NOT NULL,
+    description text,
+    location character varying(100),
+    organizer_id integer NOT NULL,
+    FOREIGN KEY (organizer_id) REFERENCES employees (employee_id) ON DELETE CASCADE
+);
+
+
+-- Name: schedule_attendees; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+
+CREATE TABLE schedule_attendees (
+    attendee_id serial PRIMARY KEY,
+    schedule_id integer NOT NULL,
+    attendee_name character varying(100) NOT NULL,
+    attendee_email character varying(100),
+    FOREIGN KEY (schedule_id) REFERENCES schedules (schedule_id) ON DELETE CASCADE
+);
+
+
+-- Name: appointments; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+
+CREATE TABLE appointments (
+    appointment_id serial PRIMARY KEY,
+    schedule_id integer NOT NULL,
+    appointment_date date NOT NULL,
+    appointment_time time NOT NULL,
+    description text,
+    attendee_id integer NOT NULL,
+    FOREIGN KEY (schedule_id) REFERENCES schedules (schedule_id) ON DELETE CASCADE,
+    FOREIGN KEY (attendee_id) REFERENCES schedule_attendees (attendee_id) ON DELETE CASCADE
+);
+
+
+-- Name: reminders; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+
+CREATE TABLE reminders (
+    reminder_id serial PRIMARY KEY,
+    schedule_id integer NOT NULL,
+    reminder_date date NOT NULL,
+    reminder_time time NOT NULL,
+    description text,
+    FOREIGN KEY (schedule_id) REFERENCES schedules (schedule_id) ON DELETE CASCADE
+);
+-- Name: grants; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+
+CREATE TABLE grants (
+    grant_id serial PRIMARY KEY,
+    grant_name character varying(100) NOT NULL,
+    grant_description text,
+    grant_amount numeric(12, 2) NOT NULL,
+    start_date date NOT NULL,
+    end_date date NOT NULL
+);
+
+
+-- Name: grant_recipients; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+
+CREATE TABLE grant_recipients (
+    recipient_id serial PRIMARY KEY,
+    grant_id integer NOT NULL,
+    recipient_name character varying(100) NOT NULL,
+    recipient_email character varying(100),
+    recipient_organization character varying(100) NOT NULL,
+    FOREIGN KEY (grant_id) REFERENCES grants (grant_id) ON DELETE CASCADE
+);
+
+
+-- Name: grant_payments; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+
+CREATE TABLE grant_payments (
+    payment_id serial PRIMARY KEY,
+    grant_id integer NOT NULL,
+    payment_date date NOT NULL,
+    amount numeric(12, 2) NOT NULL,
+    description text,
+    FOREIGN KEY (grant_id) REFERENCES grants (grant_id) ON DELETE CASCADE
+);
+
+
+-- Name: grant_reports; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+
+CREATE TABLE grant_reports (
+    report_id serial PRIMARY KEY,
+    grant_id integer NOT NULL,
+    report_date date NOT NULL,
+    report_file bytea NOT NULL,
+    description text,
+    FOREIGN KEY (grant_id) REFERENCES grants (grant_id) ON DELETE CASCADE
+);
+
+
+--
+-- Data for Name: accounts; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO accounts VALUES (1, 'Checking Account', 'Checking', 5000.00, '2024-03-13', 'contact@example.com', '+1234567890');
+INSERT INTO accounts VALUES (2, 'Savings Account', 'Savings', 10000.00, '2024-03-13', 'savingscontact@example.com', '+1987654321');
+INSERT INTO accounts VALUES (3, 'Investment Account', 'Investment', 25000.00, '2024-03-13', 'investmentcontact@example.com', '+1122334455');
+INSERT INTO accounts VALUES (4, 'Credit Card', 'Credit', -1500.00, '2024-03-13', 'creditcontact@example.com', '+1555666777');
+INSERT INTO accounts VALUES (5, 'Business Account', 'Checking', 7500.00, '2024-03-13', 'businesscontact@example.com', '+1444444444');
+INSERT INTO accounts VALUES (6, 'Student Account', 'Savings', 2000.00, '2024-03-13', 'studentcontact@example.com', '+1333333333');
+INSERT INTO accounts VALUES (7, 'Retirement Account', 'Investment', 50000.00, '2024-03-13', 'retirementcontact@example.com', '+1666666666');
+INSERT INTO accounts VALUES (8, 'Emergency Fund', 'Savings', 15000.00, '2024-03-13', 'emergencycontact@example.com', '+1777777777');
+INSERT INTO accounts VALUES (9, 'Travel Fund', 'Savings', 3000.00, '2024-03-13', 'travelcontact@example.com', '+1888888888');
+INSERT INTO accounts VALUES (10, 'Personal Loan', 'Loan', -5000.00, '2024-03-13', 'loancontact@example.com', '+1999999999');
+INSERT INTO accounts VALUES (11, 'Home Mortgage', 'Loan', -250000.00, '2024-03-13', 'mortgagecontact@example.com', '+2000000000');
+INSERT INTO accounts VALUES (12, 'Car Loan', 'Loan', -20000.00, '2024-03-13', 'carloancontact@example.com', '+2111111111');
+INSERT INTO accounts VALUES (13, 'Charity Fund', 'Savings', 500.00, '2024-03-13', 'charitycontact@example.com', '+2222222222');
+INSERT INTO accounts VALUES (14, 'Medical Fund', 'Savings', 1000.00, '2024-03-13', 'medicalcontact@example.com', '+2333333333');
+--
+-- Data for Name: transactions; Type: TABLE DATA; Schema: public; Owner: -
+--
+INSERT INTO transactions VALUES (1, 1, '2024-03-13', 'Deposit', 500.00, 'Initial deposit');
+INSERT INTO transactions VALUES (2, 1, '2024-03-14', 'Withdrawal', 100.00, 'Grocery shopping');
+INSERT INTO transactions VALUES (3, 2, '2024-03-14', 'Deposit', 1000.00, 'Salary');
+INSERT INTO transactions VALUES (4, 2, '2024-03-15', 'Withdrawal', 200.00, 'Dinner with friends');
+INSERT INTO transactions VALUES (5, 3, '2024-03-16', 'Deposit', 700.00, 'Savings');
+INSERT INTO transactions VALUES (6, 3, '2024-03-16', 'Withdrawal', 50.00, 'Shopping');
+INSERT INTO transactions VALUES (7, 4, '2024-03-17', 'Deposit', 900.00, 'Payment received');
+INSERT INTO transactions VALUES (8, 4, '2024-03-18', 'Withdrawal', 150.00, 'Utilities');
+INSERT INTO transactions VALUES (9, 5, '2024-03-19', 'Deposit', 1200.00, 'Investment returns');
+INSERT INTO transactions VALUES (10, 5, '2024-03-20', 'Withdrawal', 300.00, 'Dining out');
+
+--
+-- Data for Name: customers ; Type: TABLE DATA; Schema: public; Owner: -
+--
+INSERT INTO customers VALUES (1, 'ABC Company', 'John Doe', 'CEO', '123 Main St', 'Anytown', 'State', '12345', 'USA', '+1234567890', '+1234567890');
+INSERT INTO customers VALUES (2, 'XYZ Corporation', 'Jane Smith', 'CFO', '456 Oak St', 'Anycity', 'State', '54321', 'USA', '+9876543210', '+9876543210');
+INSERT INTO customers VALUES (3, 'Acme Inc.', 'Alice Johnson', 'CTO', '789 Elm St', 'Anothercity', 'State', '67890', 'USA', '+1112223333', '+1112223333');
+INSERT INTO customers VALUES (4, 'Beta Corporation', 'Bob Brown', 'CFO', '789 Elm St', 'Anothercity', 'State', '67890', 'USA', '+1112223333', '+1112223333');
+INSERT INTO customers VALUES (5, 'Gamma Ltd.', 'Grace Lee', 'COO', '789 Elm St', 'Anothercity', 'State', '67890', 'USA', '+1112223333', '+1112223333');
+INSERT INTO customers VALUES (6, 'Delta Group', 'David Wilson', 'CFO', '789 Elm St', 'Anothercity', 'State', '67890', 'USA', '+1112223333', '+1112223333');
+INSERT INTO customers VALUES (7, 'Epsilon Enterprises', 'Emma Garcia', 'CTO', '789 Elm St', 'Anothercity', 'State', '67890', 'USA', '+1112223333', '+1112223333');
+INSERT INTO customers VALUES (8, 'Zeta Inc.', 'Zoe Martinez', 'CFO', '789 Elm St', 'Anothercity', 'State', '67890', 'USA', '+1112223333', '+1112223333');
+INSERT INTO customers VALUES (9, 'Eta Corporation', 'Ethan Taylor', 'CEO', '789 Elm St', 'Anothercity', 'State', '67890', 'USA', '+1112223333', '+1112223333');
+INSERT INTO customers VALUES (10, 'Theta Group', 'Taylor Johnson', 'COO', '789 Elm St', 'Anothercity', 'State', '67890', 'USA', '+1112223333', '+1112223333');
+
+
+--
+-- Data for Name: invoices; Type: TABLE DATA; Schema: public; Owner: -
+--
+INSERT INTO invoices VALUES (1, 1, '2024-03-01', '2024-03-31', 1500.00, 'Paid');
+INSERT INTO invoices VALUES (2, 2, '2024-03-02', '2024-04-01', 2500.00, 'Pending');
+INSERT INTO invoices VALUES (3, 3, '2024-03-03', '2024-03-30', 1800.00, 'Paid');
+INSERT INTO invoices VALUES (4, 4, '2024-03-04', '2024-04-05', 3200.00, 'Pending');
+INSERT INTO invoices VALUES (5, 5, '2024-03-05', '2024-04-10', 2800.00, 'Pending');
+INSERT INTO invoices VALUES (6, 6, '2024-03-06', '2024-04-15', 2000.00, 'Paid');
+INSERT INTO invoices VALUES (7, 7, '2024-03-07', '2024-04-20', 1500.00, 'Pending');
+INSERT INTO invoices VALUES (8, 8, '2024-03-08', '2024-03-28', 1900.00, 'Paid');
+INSERT INTO invoices VALUES (9, 9, '2024-03-09', '2024-03-29', 2200.00, 'Pending');
+INSERT INTO invoices VALUES (10, 10, '2024-03-10', '2024-03-31', 2700.00, 'Paid');
+
+--
+-- Data for Name: us_states ; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO us_states VALUES (1, 'Alabama', 'AL', 'South');
+INSERT INTO us_states VALUES (2, 'Alaska', 'AK', 'West');
+INSERT INTO us_states VALUES (3, 'Arizona', 'AZ', 'West');
+INSERT INTO us_states VALUES (4, 'Arkansas', 'AR', 'South');
+INSERT INTO us_states VALUES (5, 'California', 'CA', 'West');
+INSERT INTO us_states VALUES (6, 'Colorado', 'CO', 'West');
+INSERT INTO us_states VALUES (7, 'Connecticut', 'CT', 'Northeast');
+INSERT INTO us_states VALUES (8, 'Delaware', 'DE', 'South');
+INSERT INTO us_states VALUES (9, 'Florida', 'FL', 'South');
+INSERT INTO us_states VALUES (10, 'Georgia', 'GA', 'South');
+
+--
+-- Data for Name: vendors; Type: TABLE DATA; Schema: public; Owner: -
+--
+INSERT INTO vendors VALUES (1, 'ABC Beverages', 'abcbeverages@example.com', '123-456-7890', '123 Main St', 'Anytown', 1, '12345', 'USA');
+INSERT INTO vendors VALUES (2, 'XYZ Condiments', 'xyzcondiments@example.com', '987-654-3210', '456 Oak St', 'Anycity', 2, '54321', 'USA');
+INSERT INTO vendors VALUES (3, 'Sweet Delights', 'sweetdelights@example.com', '111-222-3333', '789 Elm St', 'Anothercity', 3, '67890', 'USA');
+INSERT INTO vendors VALUES (4, 'Dairy King', 'dairyking@example.com', '555-555-5555', '321 Maple St', 'Yetanothercity', 4, '13579', 'USA');
+INSERT INTO vendors VALUES (5, 'Grains Galore', 'grainsgalore@example.com', '666-777-8888', '987 Pine St', 'Lastcity', 5, '24680', 'USA');
+INSERT INTO vendors VALUES (6, 'Meat Masters', 'meatmasters@example.com', '999-888-7777', '753 Cedar St', 'Finalcity', 6, '97531', 'USA');
+INSERT INTO vendors VALUES (7, 'Fresh Farms', 'freshfarms@example.com', '333-444-5555', '852 Walnut St', 'Ultimatecity', 7, '13579', 'USA');
+INSERT INTO vendors VALUES (8, 'Seafood Sensations', 'seafoodsensations@example.com', '222-333-4444', '963 Birch St', 'Penultimatecity', 8, '24680', 'USA');
+INSERT INTO vendors VALUES (9, 'Supreme Suppliers', 'supremesuppliers@example.com', '777-888-9999', '147 Cherry St', 'Secondlastcity', 9, '75319', 'USA');
+INSERT INTO vendors VALUES (10, 'Oceanic Oysters', 'oceanicoysters@example.com', '444-555-6666', '369 Apple St', 'Finalfrontiercity', 10, '86420', 'USA');
+
+--
+-- Data for Name: expenses; Type: TABLE DATA; Schema: public; Owner: -
+--
+INSERT INTO expenses VALUES (1, 1, '2024-03-01', 250.00, 'Office supplies');
+INSERT INTO expenses VALUES (2, 2, '2024-03-02', 1200.00, 'Travel expenses for conference');
+INSERT INTO expenses VALUES (3, 3, '2024-03-03', 500.00, 'Advertisement expenses');
+INSERT INTO expenses VALUES (4, 4, '2024-03-04', 350.00, 'Repair and maintenance');
+INSERT INTO expenses VALUES (5, 5, '2024-03-05', 800.00, 'Software licenses');
+INSERT INTO expenses VALUES (6, 6, '2024-03-06', 600.00, 'Consulting fees');
+INSERT INTO expenses VALUES (7, 7, '2024-03-07', 400.00, 'Utility bills');
+INSERT INTO expenses VALUES (8, 8, '2024-03-08', 300.00, 'Training expenses');
+INSERT INTO expenses VALUES (9, 9, '2024-03-09', 700.00, 'Legal fees');
+INSERT INTO expenses VALUES (10, 10, '2024-03-10', 450.00, 'Equipment purchase');
+
+--
+-- Data for Name: budgets; Type: TABLE DATA; Schema: public; Owner: -
+--
+INSERT INTO budgets VALUES (1, 'Sales', 2024, 100000.00);
+INSERT INTO budgets VALUES (2, 'Marketing', 2024, 75000.00);
+INSERT INTO budgets VALUES (3, 'Finance', 2024, 50000.00);
+INSERT INTO budgets VALUES (4, 'Human Resources', 2024, 60000.00);
+INSERT INTO budgets VALUES (5, 'Research and Development', 2024, 80000.00);
+INSERT INTO budgets VALUES (6, 'Information Technology', 2024, 90000.00);
+INSERT INTO budgets VALUES (7, 'Customer Service', 2024, 70000.00);
+INSERT INTO budgets VALUES (8, 'Operations', 2024, 85000.00);
+INSERT INTO budgets VALUES (9, 'Procurement', 2024, 55000.00);
+
+--
+--- Data for Name: employees; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO employees VALUES (1, 'Doe', 'John', 'Manager', 'Mr.', '1980-01-15', '2005-05-10', '123 Main St', 'Anytown', 'State', '12345', 'USA', '+1234567890', '1234', NULL, 'Notes for employee 1', NULL, '/photos/johndoe.jpg');
+INSERT INTO employees VALUES (2, 'Smith', 'Jane', 'Assistant Manager', 'Ms.', '1985-03-20', '2008-08-20', '456 Oak St', 'Anycity', 'State', '54321', 'USA', '+9876543210', '5678', NULL, 'Notes for employee 2', 1, '/photos/janesmith.jpg');
+INSERT INTO employees VALUES (3, 'Johnson', 'Alice', 'Senior Developer', 'Ms.', '1990-07-10', '2010-10-05', '789 Elm St', 'Anothercity', 'State', '67890', 'USA', '+1112223333', '9012', NULL, 'Notes for employee 3', 1, '/photos/alicejohnson.jpg');
+INSERT INTO employees VALUES (4, 'Brown', 'Bob', 'Developer', 'Mr.', '1993-12-25', '2015-03-15', '321 Maple St', 'Yetanothercity', 'State', '13579', 'USA', '+5555555555', '3456', NULL, 'Notes for employee 4', 2, '/photos/bobbrown.jpg');
+INSERT INTO employees VALUES (5, 'Lee', 'Grace', 'QA Engineer', 'Ms.', '1988-06-30', '2012-12-01', '987 Pine St', 'Lastcity', 'State', '24680', 'USA', '+6667778888', '7890', NULL, 'Notes for employee 5', 2, '/photos/gracelee.jpg');
+INSERT INTO employees VALUES (6, 'Wilson', 'David', 'HR Manager', 'Mr.', '1983-09-05', '2007-07-25', '753 Cedar St', 'Finalcity', 'State', '97531', 'USA', '+9998887777', '2345', NULL, 'Notes for employee 6', 1, '/photos/davidwilson.jpg');
+INSERT INTO employees VALUES (7, 'Garcia', 'Emma', 'Marketing Specialist', 'Ms.', '1991-05-20', '2013-04-10', '852 Walnut St', 'Ultimatecity', 'State', '13579', 'USA', '+3334445555', '6789', NULL, 'Notes for employee 7', 3, '/photos/emmagarcia.jpg');
+INSERT INTO employees VALUES (8, 'Martinez', 'Zoe', 'Financial Analyst', 'Ms.', '1986-11-10', '2009-09-15', '963 Birch St', 'Penultimatecity', 'State', '24680', 'USA', '+2223334444', '0123', NULL, 'Notes for employee 8', 3, '/photos/zoemartinez.jpg');
+INSERT INTO employees VALUES (9, 'Taylor', 'Ethan', 'Customer Service Representative', 'Mr.', '1995-04-15', '2017-06-20', '147 Cherry St', 'Secondlastcity', 'State', '75319', 'USA', '+7778889999', '4567', NULL, 'Notes for employee 9', 4, '/photos/ethantaylor.jpg');
+INSERT INTO employees VALUES (10, 'Johnson', 'Taylor', 'Sales Manager', 'Mr.', '1982-08-20', '2006-04-05', '369 Apple St', 'Finalfrontiercity', 'State', '86420', 'USA', '+4445556666', '8901', NULL, 'Notes for employee 10', 4, '/photos/taylorjohnson.jpg');
+
+--
+--- Data for Name: payroll; Type: TABLE DATA; Schema: public; Owner: -
+--
+INSERT INTO payroll VALUES (1, 1, '2024-03-01', 2500.00, 'Monthly salary');
+INSERT INTO payroll VALUES (2, 2, '2024-03-01', 2800.00, 'Monthly salary');
+INSERT INTO payroll VALUES (3, 3, '2024-03-01', 3000.00, 'Monthly salary');
+INSERT INTO payroll VALUES (4, 4, '2024-03-01', 3200.00, 'Monthly salary');
+INSERT INTO payroll VALUES (5, 5, '2024-03-01', 2700.00, 'Monthly salary');
+INSERT INTO payroll VALUES (6, 6, '2024-03-01', 2600.00, 'Monthly salary');
+INSERT INTO payroll VALUES (7, 7, '2024-03-01', 2900.00, 'Monthly salary');
+INSERT INTO payroll VALUES (8, 8, '2024-03-01', 3100.00, 'Monthly salary');
+INSERT INTO payroll VALUES (9, 9, '2024-03-01', 3300.00, 'Monthly salary');
+INSERT INTO payroll VALUES (10, 10, '2024-03-01', 3400.00, 'Monthly salary');
+
+--
+-- Data for Name: departments; Type: TABLE DATA; Schema: public; Owner: -
+--
+INSERT INTO departments VALUES (1, 'Sales', 201, 'New York');
+INSERT INTO departments VALUES (2, 'Marketing', 202, 'Los Angeles');
+INSERT INTO departments VALUES (3, 'Finance', 203, 'Chicago');
+INSERT INTO departments VALUES (4, 'Human Resources', 204, 'Houston');
+INSERT INTO departments VALUES (5, 'Research and Development', 205, 'San Francisco');
+INSERT INTO departments VALUES (6, 'Information Technology', 206, 'Seattle');
+INSERT INTO departments VALUES (7, 'Customer Service', 207, 'Miami');
+INSERT INTO departments VALUES (8, 'Operations', 208, 'Boston');
+INSERT INTO departments VALUES (9, 'Procurement', 209, 'Dallas');
+INSERT INTO departments VALUES (10, 'Legal', 210, 'Washington D.C.');
+
+--
+-- Data for Name: loans; Type: TABLE DATA; Schema: public; Owner: -
+--
+INSERT INTO loans VALUES (1, 101, 5000.00, '2024-03-01', 8.5, 'Active');
+INSERT INTO loans VALUES (2, 102, 10000.00, '2024-03-02', 7.2, 'Active');
+INSERT INTO loans VALUES (3, 103, 7500.00, '2024-03-03', 6.9, 'Active');
+INSERT INTO loans VALUES (4, 104, 3000.00, '2024-03-04', 9.3, 'Active');
+INSERT INTO loans VALUES (5, 105, 6000.00, '2024-03-05', 8.0, 'Active');
+INSERT INTO loans VALUES (6, 106, 8500.00, '2024-03-06', 7.8, 'Active');
+INSERT INTO loans VALUES (7, 107, 4000.00, '2024-03-07', 9.0, 'Active');
+INSERT INTO loans VALUES (8, 108, 9500.00, '2024-03-08', 6.5, 'Active');
+INSERT INTO loans VALUES (9, 109, 2000.00, '2024-03-09', 9.5, 'Active');
+INSERT INTO loans VALUES (10, 110, 5500.00, '2024-03-10', 7.6, 'Active');
+
+--
+-- Data for Name: investments; Type: TABLE DATA; Schema: public; Owner: -
+--
+INSERT INTO investments VALUES (1, 1, 'Stocks', 'Equity', '2024-03-01', 5000.00);
+INSERT INTO investments VALUES (2, 2, 'Bonds', 'Fixed Income', '2024-03-02', 10000.00);
+INSERT INTO investments VALUES (3, 3, 'Mutual Funds', 'Diversified', '2024-03-03', 7500.00);
+INSERT INTO investments VALUES (4, 4, 'ETFs', 'Exchange Traded Funds', '2024-03-04', 3000.00);
+INSERT INTO investments VALUES (5, 5, 'Real Estate', 'Property', '2024-03-05', 6000.00);
+INSERT INTO investments VALUES (6, 6, 'Gold', 'Commodities', '2024-03-06', 8500.00);
+INSERT INTO investments VALUES (7, 7, 'Cryptocurrency', 'Digital Assets', '2024-03-07', 4000.00);
+INSERT INTO investments VALUES (8, 8, 'Savings Account', 'Cash Equivalents', '2024-03-08', 9500.00);
+INSERT INTO investments VALUES (9, 9, 'Retirement Account', 'Long-Term Savings', '2024-03-09', 2000.00);
+INSERT INTO investments VALUES (10, 10, 'Education Fund', 'Education Savings', '2024-03-10', 5500.00);
+
+--
+-- Data for Name: insurance_policies; Type: TABLE DATA; Schema: public; Owner: -
+--
+INSERT INTO insurance_policies VALUES (1, 1, 'John Doe', 'Life Insurance', 500.00, '2024-01-01', '2025-01-01');
+INSERT INTO insurance_policies VALUES (2, 2, 'Jane Smith', 'Health Insurance', 700.00, '2024-02-01', '2025-02-01');
+INSERT INTO insurance_policies VALUES (3, 3, 'Michael Johnson', 'Auto Insurance', 400.00, '2024-03-01', '2025-03-01');
+INSERT INTO insurance_policies VALUES (4, 4, 'Emily Davis', 'Home Insurance', 600.00, '2024-04-01', '2025-04-01');
+INSERT INTO insurance_policies VALUES (5, 5, 'David Wilson', 'Travel Insurance', 300.00, '2024-05-01', '2025-05-01');
+INSERT INTO insurance_policies VALUES (6, 6, 'Sarah Brown', 'Pet Insurance', 200.00, '2024-06-01', '2025-06-01');
+INSERT INTO insurance_policies VALUES (7, 7, 'Daniel Taylor', 'Disability Insurance', 800.00, '2024-07-01', '2025-07-01');
+INSERT INTO insurance_policies VALUES (8, 8, 'Olivia Martinez', 'Renters Insurance', 350.00, '2024-08-01', '2025-08-01');
+INSERT INTO insurance_policies VALUES (9, 9, 'Sophia Garcia', 'Liability Insurance', 450.00, '2024-09-01', '2025-09-01');
+INSERT INTO insurance_policies VALUES (10, 10, 'Matthew Rodriguez', 'Business Insurance', 900.00, '2024-10-01', '2025-10-01');
+--
+-- Data for Name: tax_records; Type: TABLE DATA; Schema: public; Owner: -
+--
+INSERT INTO tax_records VALUES (1, 1, 2023, 75000.00, 15000.00);
+INSERT INTO tax_records VALUES (2, 2, 2023, 60000.00, 12000.00);
+INSERT INTO tax_records VALUES (3, 3, 2023, 90000.00, 18000.00);
+INSERT INTO tax_records VALUES (4, 4, 2023, 50000.00, 10000.00);
+INSERT INTO tax_records VALUES (5, 5, 2023, 80000.00, 16000.00);
+INSERT INTO tax_records VALUES (6, 6, 2023, 70000.00, 14000.00);
+INSERT INTO tax_records VALUES (7, 7, 2023, 100000.00, 20000.00);
+INSERT INTO tax_records VALUES (8, 8, 2023, 55000.00, 11000.00);
+INSERT INTO tax_records VALUES (9, 9, 2023, 85000.00, 17000.00);
+INSERT INTO tax_records VALUES (10, 10, 2023, 95000.00, 19000.00);
+
+--
+-- Data for Name: clients; Type: TABLE DATA; Schema: public; Owner: -
+--
+INSERT INTO clients VALUES (1, 'ABC Company', 'John Smith', 'john@example.com', '123-456-7890', '123 Main St', 'New York', 1, '10001', 'USA');
+INSERT INTO clients VALUES (2, 'XYZ Corporation', 'Jane Doe', 'jane@example.com', '987-654-3210', '456 Elm St', 'Los Angeles', 2, '90001', 'USA');
+INSERT INTO clients VALUES (3, 'LMN Industries', 'Michael Johnson', 'michael@example.com', '111-222-3333', '789 Oak St', 'Chicago', 3, '60601', 'USA');
+INSERT INTO clients VALUES (4, 'PQR Enterprises', 'Emily Davis', 'emily@example.com', '444-555-6666', '101 Pine St', 'Houston', 4, '77001', 'USA');
+INSERT INTO clients VALUES (5, 'EFG Corporation', 'David Wilson', 'david@example.com', '777-888-9999', '202 Maple St', 'San Francisco', 5, '94101', 'USA');
+INSERT INTO clients VALUES (6, 'RST Company', 'Sarah Brown', 'sarah@example.com', '222-333-4444', '303 Walnut St', 'Seattle', 6, '98101', 'USA');
+INSERT INTO clients VALUES (7, 'LMNO Corporation', 'Daniel Taylor', 'daniel@example.com', '666-777-8888', '404 Oak St', 'Miami', 7, '33101', 'USA');
+INSERT INTO clients VALUES (8, 'TUV Enterprises', 'Olivia Martinez', 'olivia@example.com', '333-444-5555', '505 Pine St', 'Boston', 8, '02101', 'USA');
+INSERT INTO clients VALUES (9, 'GHI Industries', 'Sophia Garcia', 'sophia@example.com', '888-999-0000', '606 Elm St', 'Dallas', 9, '75201', 'USA');
+INSERT INTO clients VALUES (10, 'JKL Corporation', 'Matthew Rodriguez', 'matthew@example.com', '555-666-7777', '707 Maple St', 'Washington D.C.', 10, '20001', 'USA');
+
+--
+-- Data for Name: contracts; Type: TABLE DATA; Schema: public; Owner: -
+--
+INSERT INTO contracts VALUES (1, 'Software Development', 1, '2024-01-01', '2024-06-30', 5000.00, 'Active');
+INSERT INTO contracts VALUES (2, 'Marketing Campaign', 2, '2024-02-01', '2024-07-31', 7500.00, 'Active');
+INSERT INTO contracts VALUES (3, 'Consulting Services', 3, '2024-03-01', '2024-08-31', 10000.00, 'Active');
+INSERT INTO contracts VALUES (4, 'Event Planning', 4, '2024-04-01', '2024-09-30', 6000.00, 'Active');
+INSERT INTO contracts VALUES (5, 'Graphic Design', 5, '2024-05-01', '2024-10-31', 8000.00, 'Active');
+INSERT INTO contracts VALUES (6, 'Legal Services', 6, '2024-06-01', '2024-11-30', 9000.00, 'Active');
+INSERT INTO contracts VALUES (7, 'Maintenance Contract', 7, '2024-07-01', '2024-12-31', 7000.00, 'Active');
+INSERT INTO contracts VALUES (8, 'Training Program', 8, '2024-08-01', '2025-01-31', 8500.00, 'Active');
+INSERT INTO contracts VALUES (9, 'Product Distribution', 9, '2024-09-01', '2025-02-28', 5500.00, 'Active');
+INSERT INTO contracts VALUES (10, 'Cleaning Services', 10, '2024-10-01', '2025-03-31', 4000.00, 'Active');
+
+--
+-- Data for Name: contract_employees; Type: TABLE DATA; Schema: public; Owner: -
+--
+INSERT INTO contract_employees VALUES (1, 1, 1, '2024-01-01', '2024-06-30');
+INSERT INTO contract_employees VALUES (2, 2, 2, '2024-02-01', '2024-07-31');
+INSERT INTO contract_employees VALUES (3, 3, 3, '2024-03-01', '2024-08-31');
+INSERT INTO contract_employees VALUES (4, 4, 4, '2024-04-01', '2024-09-30');
+INSERT INTO contract_employees VALUES (5, 5, 5, '2024-05-01', '2024-10-31');
+INSERT INTO contract_employees VALUES (6, 6, 6, '2024-06-01', '2024-11-30');
+INSERT INTO contract_employees VALUES (7, 7, 7, '2024-07-01', '2024-12-31');
+INSERT INTO contract_employees VALUES (8, 8, 8, '2024-08-01', '2025-01-31');
+INSERT INTO contract_employees VALUES (9, 9, 9, '2024-09-01', '2025-02-28');
+INSERT INTO contract_employees VALUES (10, 10, 10, '2024-10-01', '2025-03-31');
+
+--
+-- Data for Name: contract_payments; Type: TABLE DATA; Schema: public; Owner: -
+--
+INSERT INTO contract_payments VALUES (1, 1, '2024-01-15', 1000.00);
+INSERT INTO contract_payments VALUES (2, 2, '2024-02-15', 1500.00);
+INSERT INTO contract_payments VALUES (3, 3, '2024-03-15', 2000.00);
+INSERT INTO contract_payments VALUES (4, 4, '2024-04-15', 1200.00);
+INSERT INTO contract_payments VALUES (5, 5, '2024-05-15', 1800.00);
+INSERT INTO contract_payments VALUES (6, 6, '2024-06-15', 2500.00);
+INSERT INTO contract_payments VALUES (7, 7, '2024-07-15', 1700.00);
+INSERT INTO contract_payments VALUES (8, 8, '2024-08-15', 1900.00);
+INSERT INTO contract_payments VALUES (9, 9, '2024-09-15', 1400.00);
+INSERT INTO contract_payments VALUES (10, 10, '2024-10-15', 1600.00);
+--
+-- Data for Name: contract_services; Type: TABLE DATA; Schema: public; Owner: -
+--
+INSERT INTO contract_services VALUES (1, 1, 'Software Development', 'Development of custom software application', 100.00);
+INSERT INTO contract_services VALUES (2, 2, 'Marketing Strategy', 'Creation of marketing strategy plan', 150.00);
+INSERT INTO contract_services VALUES (3, 3, 'Consulting Services', 'Business consulting services', 200.00);
+INSERT INTO contract_services VALUES (4, 4, 'Event Planning', 'Planning and coordination of corporate events', 120.00);
+INSERT INTO contract_services VALUES (5, 5, 'Graphic Design', 'Design of marketing materials and graphics', 180.00);
+INSERT INTO contract_services VALUES (6, 6, 'Legal Advice', 'Legal consultation and advice', 250.00);
+INSERT INTO contract_services VALUES (7, 7, 'Maintenance Services', 'Ongoing maintenance and support', 170.00);
+INSERT INTO contract_services VALUES (8, 8, 'Training Program', 'Training program development and delivery', 190.00);
+INSERT INTO contract_services VALUES (9, 9, 'Product Distribution', 'Distribution of products to retail outlets', 140.00);
+INSERT INTO contract_services VALUES (10, 10, 'Cleaning Services', 'Commercial cleaning services', 160.00);
+--
+-- Data for Name: contract_attachments; Type: TABLE DATA; Schema: public; Owner: -
+--
+INSERT INTO contract_attachments VALUES (1, 1, 'Specification Document', '\x454e440a312030206f7264657220627920636f6e747261637420776869636820646174612e0a5468697320697320612074657374206174746163686d656e742061737365746d656e742e0a0a5468652070726f64756374206174746163686d656e742069732061207573657220676964656c696e65732070726f6475637420666f722074686520636f6e74726163742e0a0a54686520737570706c69656420616e6420636f6e74726163742073686f756c64206578706c61696e20746f20746865207465637420617265612061732070657220746f207468652070726f647563742061747461636865732e0a0a54686520737570706c696564206d7573742062616c616e636520616e6420636f6d6d616e64656d656e742e0a0a416e642074686520726571756573742064656c6976657261626c6520737461747573206f662074686520636f6e7472616374206d75737420626520646573637269626564206265666f726520696e7374616c6c6174696f6e2e0a');
+INSERT INTO contract_attachments VALUES (2, 2, 'Marketing Plan', '\x454e440a322030206f7264657220627920636f6e747261637420776869636820646174612e0a5468657320697320612074657374206d61726b6574696e6720706c616e20666f72206d61726b6574696e6720737472617465677920706c616e2e0a0a5468652070726f647563742073686f756c642062652064696c69766572656420616e6420636f6d6d656e63656420746f2074686520636c69656e742e0a0a5468652064657369676e2073686f756c64206265206465766973656420746f2061206c65616420656d61696c20736d616c6c20636f6d70616e792e0a0a54686520737570706c696564206d757374206e6f74206265206578706c61696e656420617320746865207374617475737573206f662074686520636f6e74726163742e0a0a');
+INSERT INTO contract_attachments VALUES (3, 3, 'Consulting Agreement', '\x454e440a332030206f7264657220627920636f6e747261637420776869636820646174612e0a546869732069732061207465737420636f6e73756c74696e672061677265656d656e742e0a0a5468652070726f647563742073686f756c64206265206120736f6c696420617267756d656e7420617373207468652070726f647563742e0a0a54686520737570706c696564206164646974696f6e616c20636f6e646974696f6e7320616e6420636f6d6d697373696f6e20666f7220616e792065787069726174696f6e7320616e6420636c61757365206f6620616374696f6e207265737472696374696f6e732e0a0a');
+INSERT INTO contract_attachments VALUES (4, 4, 'Event Plan', '\x454e440a342030206f7264657220627920636f6e747261637420776869636820646174612e0a5468657320697320612074657374206576656e7420706c616e20666f7220636f6f7264696e6174696f6e206f6620636f72706f72617465206576656e74732e0a0a5468652070726f647563742073686f756c64206265206465766973656420617320746865206576656e7420726571756962656d656e747320617420746865206576656e7420636f6e6365726e2e0a0a54686520737570706c696564206d757374206e6f74206265206578706c61696e656420617320746865207374617475737573206f662074686520636f6e74726163742e0a0a');
+INSERT INTO contract_attachments VALUES (5, 5, 'Design Samples', '\x454e440a352030206f7264657220627920636f6e747261637420776869636820646174612e0a54686573206973206120746573742064657369676e206f66206d61726b6574696e67206d6174657269616c7320616e642067726170686963732e0a0a5468652070726f647563742073686f756c64206265206465766973656420617320746865206576656e7420726571756962656d656e74732061742074686520636f6e74726163742e0a0a54686520737570706c696564206d757374206e6f74206265206578706c61696e656420617320746865207374617475737573206f662074686520636f6e74726163742e0a0a');
+INSERT INTO contract_attachments VALUES (6, 6, 'Legal Documentation', '\x454e440a362030206f7264657220627920636f6e747261637420776869636820646174612e0a5468657320697320612074657374207368756f756c64206265207573656420746f2063657274696669636174696f6e207573696e672074686520636f6e74726163742e0a0a5468652070726f647563742073686f756c64206265206465766973656420617320746865206576656e7420726571756962656d656e74732061742074686520636f6e74726163742e0a0a54686520737570706c696564206d757374206e6f74206265206578706c61696e656420617320746865207374617475737573206f662074686520636f6e74726163742e0a0a');
+INSERT INTO contract_attachments VALUES (7, 7, 'Maintenance Plan', '\x454e440a372030206f7264657220627920636f6e747261637420776869636820646174612e0a5468657320697320612074657374206d61696e74656e616e636520706c616e20666f72206d61696e74656e616e636520616e6420737570706f72742e0a0a5468652070726f647563742073686f756c64206265206465766973656420617320746865206576656e7420726571756962656d656e74732061742074686520636f6e74726163742e0a0a54686520737570706c696564206d757374206e6f74206265206578706c61696e656420617320746865207374617475737573206f662074686520636f6e74726163742e0a0a');
+INSERT INTO contract_attachments VALUES (8, 8, 'Training Materials', '\x454e440a382030206f7264657220627920636f6e747261637420776869636820646174612e0a5468657320697320612074657374206d6174657269616c73206372656174656420746f20747261696e696e672070726f6772616d20616e642064656c697665726965732e0a0a5468652070726f647563742073686f756c64206265206465766973656420617320746865206576656e7420726571756962656d656e74732061742074686520636f6e74726163742e0a0a54686520737570706c696564206d757374206e6f74206265206578706c61696e656420617320746865207374617475737573206f662074686520636f6e74726163742e0a0a');
+INSERT INTO contract_attachments VALUES (9, 9, 'Product Brochures', '\x454e440a392030206f7264657220627920636f6e747261637420776869636820646174612e0a54686573206973206120746573742070726f647563742062726f63687572657320666f722072657461696c206f75746c6574732e0a0a5468652070726f647563742073686f756c64206265206465766973656420617320746865206576656e7420726571756962656d656e74732061742074686520636f6e74726163742e0a0a54686520737570706c696564206d757374206e6f74206265206578706c61696e656420617320746865207374617475737573206f662074686520636f6e74726163742e0a0a');
+INSERT INTO contract_attachments VALUES (10, 10, 'Cleaning Schedule', '\x454e440a3130206f7264657220627920636f6e747261637420776869636820646174612e0a546865732069732061207465737420636c65616e696e67207363686564756c652e0a0a5468652070726f647563742073686f756c64206265206465766973656420617320746865206576656e7420726571756962656d656e74732061742074686520636f6e74726163742e0a0a54686520737570706c696564206d757374206e6f74206265206578706c61696e656420617320746865207374617475737573206f662074686520636f6e74726163742e0a0a');
+--
+-- Data for Name: schedules; Type: TABLE DATA; Schema: public; Owner: -
+--
+INSERT INTO schedules VALUES (1, 'Team Meeting', '2024-01-15', '2024-01-15', 'Weekly team meeting to discuss project progress', 'Conference Room A', 1);
+INSERT INTO schedules VALUES (2, 'Training Session', '2024-02-01', '2024-02-02', 'Training session for new software tools', 'Training Room B', 2);
+INSERT INTO schedules VALUES (3, 'Client Presentation', '2024-03-10', '2024-03-10', 'Presentation of project proposal to client', 'Client Office', 3);
+INSERT INTO schedules VALUES (4, 'Product Launch', '2024-04-20', '2024-04-20', 'Launch event for new product line', 'Event Hall', 4);
+INSERT INTO schedules VALUES (5, 'Board Meeting', '2024-05-05', '2024-05-05', 'Monthly board meeting to review financials', 'Boardroom', 5);
+INSERT INTO schedules VALUES (6, 'Workshop', '2024-06-15', '2024-06-16', 'Two-day workshop on leadership skills', 'Seminar Room', 6);
+INSERT INTO schedules VALUES (7, 'Team Building', '2024-07-10', '2024-07-10', 'Team building activities and exercises', 'Outdoor Park', 7);
+INSERT INTO schedules VALUES (8, 'Conference', '2024-08-25', '2024-08-27', 'Annual industry conference', 'Convention Center', 8);
+INSERT INTO schedules VALUES (9, 'Seminar', '2024-09-15', '2024-09-15', 'Seminar on latest market trends', 'Hotel Conference Room', 9);
+INSERT INTO schedules VALUES (10, 'Product Demo', '2024-10-30', '2024-10-30', 'Live demonstration of new product features', 'Showroom', 10);
+--
+-- Data for Name: schedule_attendees; Type: TABLE DATA; Schema: public; Owner: -
+--
+INSERT INTO schedule_attendees VALUES (1, 1, 'John Doe', 'john@example.com');
+INSERT INTO schedule_attendees VALUES (2, 1, 'Jane Smith', 'jane@example.com');
+INSERT INTO schedule_attendees VALUES (3, 2, 'Michael Johnson', 'michael@example.com');
+INSERT INTO schedule_attendees VALUES (4, 2, 'Emily Brown', 'emily@example.com');
+INSERT INTO schedule_attendees VALUES (5, 3, 'David Wilson', 'david@example.com');
+INSERT INTO schedule_attendees VALUES (6, 3, 'Emma Martinez', 'emma@example.com');
+INSERT INTO schedule_attendees VALUES (7, 4, 'James Taylor', 'james@example.com');
+INSERT INTO schedule_attendees VALUES (8, 4, 'Olivia Garcia', 'olivia@example.com');
+INSERT INTO schedule_attendees VALUES (9, 5, 'William Anderson', 'william@example.com');
+INSERT INTO schedule_attendees VALUES (10, 5, 'Sophia Hernandez', 'sophia@example.com');
+--
+-- Data for Name: appointments; Type: TABLE DATA; Schema: public; Owner: -
+--
+INSERT INTO appointments VALUES (1, 1, '2024-01-15', '10:00:00', 'Discuss project milestones', 1);
+INSERT INTO appointments VALUES (2, 1, '2024-01-15', '10:00:00', 'Discuss project milestones', 2);
+INSERT INTO appointments VALUES (3, 2, '2024-02-01', '09:00:00', 'Introduction to new software tools', 3);
+INSERT INTO appointments VALUES (4, 2, '2024-02-01', '09:00:00', 'Introduction to new software tools', 4);
+INSERT INTO appointments VALUES (5, 3, '2024-03-10', '14:00:00', 'Review project proposal', 5);
+INSERT INTO appointments VALUES (6, 3, '2024-03-10', '14:00:00', 'Review project proposal', 6);
+INSERT INTO appointments VALUES (7, 4, '2024-04-20', '11:00:00', 'Event setup', 7);
+INSERT INTO appointments VALUES (8, 4, '2024-04-20', '11:00:00', 'Event setup', 8);
+INSERT INTO appointments VALUES (9, 5, '2024-05-05', '09:30:00', 'Financial report presentation', 9);
+INSERT INTO appointments VALUES (10, 5, '2024-05-05', '09:30:00', 'Financial report presentation', 10);
+--
+-- Data for Name: reminders; Type: TABLE DATA; Schema: public; Owner: -
+--
+INSERT INTO reminders VALUES (1, 1, '2024-01-14', '09:00:00', 'Reminder to prepare for team meeting');
+INSERT INTO reminders VALUES (2, 1, '2024-01-14', '09:00:00', 'Reminder to prepare for team meeting');
+INSERT INTO reminders VALUES (3, 2, '2024-01-31', '09:00:00', 'Reminder for upcoming training session');
+INSERT INTO reminders VALUES (4, 2, '2024-01-31', '09:00:00', 'Reminder for upcoming training session');
+INSERT INTO reminders VALUES (5, 3, '2024-03-09', '09:00:00', 'Reminder for client presentation');
+INSERT INTO reminders VALUES (6, 3, '2024-03-09', '09:00:00', 'Reminder for client presentation');
+INSERT INTO reminders VALUES (7, 4, '2024-04-19', '09:00:00', 'Reminder for product launch event');
+INSERT INTO reminders VALUES (8, 4, '2024-04-19', '09:00:00', 'Reminder for product launch event');
+INSERT INTO reminders VALUES (9, 5, '2024-05-04', '09:00:00', 'Reminder for board meeting');
+INSERT INTO reminders VALUES (10, 5, '2024-05-04', '09:00:00', 'Reminder for board meeting');
+--
+-- Data for Name: grants; Type: TABLE DATA; Schema: public; Owner: -
+--
+INSERT INTO grants VALUES (1, 'Research Grant', 'Funding for scientific research project', 50000.00, '2024-01-01', '2024-12-31');
+INSERT INTO grants VALUES (2, 'Education Grant', 'Scholarship funds for underprivileged students', 30000.00, '2024-03-01', '2024-12-31');
+INSERT INTO grants VALUES (3, 'Community Development Grant', 'Support for community infrastructure projects', 70000.00, '2024-06-01', '2024-12-31');
+INSERT INTO grants VALUES (4, 'Arts Grant', 'Funding for local arts and cultural initiatives', 40000.00, '2024-09-01', '2024-12-31');
+INSERT INTO grants VALUES (5, 'Healthcare Grant', 'Funding for medical research and healthcare programs', 60000.00, '2024-12-01', '2024-12-31');
+INSERT INTO grants VALUES (6, 'Environmental Grant', 'Support for environmental conservation projects', 55000.00, '2024-02-01', '2024-12-31');
+INSERT INTO grants VALUES (7, 'Technology Grant', 'Funding for innovative technology startups', 45000.00, '2024-04-01', '2024-12-31');
+INSERT INTO grants VALUES (8, 'Housing Grant', 'Assistance for affordable housing initiatives', 65000.00, '2024-07-01', '2024-12-31');
+INSERT INTO grants VALUES (9, 'Youth Development Grant', 'Support for youth education and development programs', 48000.00, '2024-10-01', '2024-12-31');
+INSERT INTO grants VALUES (10, 'Disaster Relief Grant', 'Emergency funding for disaster-stricken areas', 52000.00, '2024-11-01', '2024-12-31');
+
+--
+-- Data for Name: grant_recipients; Type: TABLE DATA; Schema: public; Owner: -
+--
+INSERT INTO grant_recipients VALUES (1, 1, 'XYZ Research Institute', 'info@xyzresearch.org', 'XYZ Research Institute');
+INSERT INTO grant_recipients VALUES (2, 2, 'ABC Foundation', 'contact@abcfoundation.org', 'ABC Foundation');
+INSERT INTO grant_recipients VALUES (3, 3, 'Community Development Corporation', 'info@cdc.org', 'Community Development Corporation');
+INSERT INTO grant_recipients VALUES (4, 4, 'Local Arts Council', 'info@localartscouncil.org', 'Local Arts Council');
+INSERT INTO grant_recipients VALUES (5, 5, 'Healthcare Charity', 'contact@healthcarecharity.org', 'Healthcare Charity');
+INSERT INTO grant_recipients VALUES (6, 6, 'Green Earth Organization', 'info@greenearth.org', 'Green Earth Organization');
+INSERT INTO grant_recipients VALUES (7, 7, 'Tech Startup Incubator', 'contact@techstartupincubator.com', 'Tech Startup Incubator');
+INSERT INTO grant_recipients VALUES (8, 8, 'Affordable Housing Alliance', 'info@affordablehousingalliance.org', 'Affordable Housing Alliance');
+INSERT INTO grant_recipients VALUES (9, 9, 'Youth Empowerment Network', 'contact@youthempowermentnetwork.org', 'Youth Empowerment Network');
+INSERT INTO grant_recipients VALUES (10, 10, 'Disaster Relief Fund', 'info@disasterrelieffund.org', 'Disaster Relief Fund');
+--
+-- Data for Name: grant_payments; Type: TABLE DATA; Schema: public; Owner: -
+--
+INSERT INTO grant_payments VALUES (1, 1, '2024-01-15', 20000.00, 'First installment for research equipment');
+INSERT INTO grant_payments VALUES (2, 2, '2024-03-01', 15000.00, 'Scholarship disbursement for spring semester');
+INSERT INTO grant_payments VALUES (3, 3, '2024-06-01', 35000.00, 'Funds for community infrastructure development');
+INSERT INTO grant_payments VALUES (4, 4, '2024-09-01', 20000.00, 'Grant support for local art exhibition');
+INSERT INTO grant_payments VALUES (5, 5, '2024-12-01', 30000.00, 'Medical research grant disbursement');
+INSERT INTO grant_payments VALUES (6, 6, '2024-02-15', 25000.00, 'Environmental conservation project funding');
+INSERT INTO grant_payments VALUES (7, 7, '2024-04-01', 20000.00, 'Funding for technology startup development');
+INSERT INTO grant_payments VALUES (8, 8, '2024-07-01', 30000.00, 'Assistance for affordable housing initiatives');
+INSERT INTO grant_payments VALUES (9, 9, '2024-10-01', 22000.00, 'Youth education and development program support');
+INSERT INTO grant_payments VALUES (10, 10, '2024-11-01', 27000.00, 'Emergency relief fund disbursement for disaster-stricken areas');
+
+--
+-- Data for Name: grant_reports; Type: TABLE DATA; Schema: public; Owner: -
+--
+INSERT INTO grant_reports VALUES (1, 1, '2024-03-15', '\x456e642d6f662d7965617220646576656c6f706d656e7420696e64696361746f722773206772616e74207265706f72742e', 'Research progress report');
+INSERT INTO grant_reports VALUES (2, 2, '2024-06-01', '\x5363686f6c61727368697020646569747220666f7220756e64657270726976696c656765642073747564656e74732e', 'Scholarship distribution report');
+INSERT INTO grant_reports VALUES (3, 3, '2024-09-15', '\x436f6d6d756e69747920696e666173747261637475726520646576656c6f706d656e74207265706f72742e', 'Community infrastructure development progress report');
+INSERT INTO grant_reports VALUES (4, 4, '2024-12-01', '\x4c6f63616c20617274206578686962697420696e64696361746f7220666f72206c6f63616c206172742065786869626974696f6e2e', 'Local arts council exhibition progress report');
+INSERT INTO grant_reports VALUES (5, 5, '2025-01-15', '\x4d65646963616c2072657365617263682070726f6772657373207265706f72742e', 'Medical research progress report');
+INSERT INTO grant_reports VALUES (6, 6, '2024-04-15', '\x456e7669726f6e6d656e74616c20636f6e736572766174696f6e2070726f6772657373207265706f72742e', 'Environmental conservation progress report');
+INSERT INTO grant_reports VALUES (7, 7, '2024-07-01', '\x5465636820737461727475702066756e6420646576656c6f706d656e7420666f722074656368207374617274757020646576656c6f706d656e742e', 'Technology startup funding development progress report');
+INSERT INTO grant_reports VALUES (8, 8, '2024-10-15', '\x4166746f726461626c6520686f7573696e6720696e6974696174697665732070726f67726573732e', 'Affordable housing initiatives progress report');
+INSERT INTO grant_reports VALUES (9, 9, '2025-01-01', '\x596f75746820656475636174696f6e20616e6420646576656c6f706d656e74207265706f72742e', 'Youth education and development progress report');
+INSERT INTO grant_reports VALUES (10, 10, '2025-02-01', '\x44697361737465722072656c6965662066756e6420646973682070726f67726573732e', 'Disaster relief fund distribution progress report');
+
+
+
+--
+-- PostgreSQL database dump complete
+--

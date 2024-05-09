@@ -1,0 +1,1898 @@
+{
+    "json_data": {
+        "text": "",
+        "userId": "24042023-181615159-023e40e0-84eb-4892-b9ef-054673421",
+        "orgId": "24042023-181225698-ba9a516e-3b5e-4143-9167-786342181",
+        "oldQuery": "",
+        "tableMetadata": [
+            
+            {
+                "DataTableId": "03042024-104815506-acd9bc12-2e4a-4f1d-8b3e_customers",
+                "DataTableName": "customers",
+                "WorkspaceId": "25042023-131148176-c521c303-7900-443e-af2e-e2f3d6cebdb8",
+                "WorkspaceName": "customer_info",
+                "TableDescription": "Table containing customer details",
+                "PRIMARY_KEY": [
+                    "customers.customer_id"
+                ],
+                "FOREIGN_KEY": [],
+                "Columns": [
+                    {
+                        "Name": "customer_id",
+                        "ColumnDescription": "Unique identifier for the customer in the system.",
+                        "DataAccess": "customerId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "company_name",
+                        "ColumnDescription": "Name of the company.",
+                        "DataAccess": "companyName",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "contact_name",
+                        "ColumnDescription": "Name of the contact person.",
+                        "DataAccess": "contactName",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "contact_title",
+                        "ColumnDescription": "Title of the contact person.",
+                        "DataAccess": "contactTitle",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "address",
+                        "ColumnDescription": "Address of the customer.",
+                        "DataAccess": "address",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "city",
+                        "ColumnDescription": "City of the customer.",
+                        "DataAccess": "city",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "region",
+                        "ColumnDescription": "Region of the customer.",
+                        "DataAccess": "region",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "postal_code",
+                        "ColumnDescription": "Postal code of the customer.",
+                        "DataAccess": "postalCode",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "country",
+                        "ColumnDescription": "Country of the customer.",
+                        "DataAccess": "country",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "phone",
+                        "ColumnDescription": "Phone number of the customer.",
+                        "DataAccess": "phone",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "fax",
+                        "ColumnDescription": "Fax number of the customer.",
+                        "DataAccess": "fax",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    }
+                ]
+            },
+            {
+                "DataTableId": "03042024-104815506-acd9bc12-2e4a-4f1d-8b3e_us_states",
+                "DataTableName": "us_states",
+                "WorkspaceId": "25042023-131148176-c521c303-7900-443e-af2e-e2f3d6cebdb8",
+                "WorkspaceName": "State_info",
+                "TableDescription": "Table containing US states details",
+                "PRIMARY_KEY": [
+                    "us_states.state_id"
+                ],
+                "FOREIGN_KEY": [],
+                "Columns": [
+                    {
+                        "Name": "state_id",
+                        "ColumnDescription": "Unique identifier for the US state.",
+                        "DataAccess": "stateId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "state_name",
+                        "ColumnDescription": "Name of the US state.",
+                        "DataAccess": "stateName",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "state_abbr",
+                        "ColumnDescription": "Abbreviation of the US state.",
+                        "DataAccess": "stateAbbr",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "state_region",
+                        "ColumnDescription": "Region of the US state.",
+                        "DataAccess": "stateRegion",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    }
+                ]
+            },
+            {
+                "DataTableId": "03042024-104815506-acd9bc12-2e4a-4f1d-8b3e_accounts",
+                "DataTableName": "accounts",
+                "WorkspaceId": "25042023-131148176-c521c303-7900-443e-af2e-e2f3d6cebdb8",
+                "WorkspaceName": "account_info",
+                "TableDescription": "Table containing account details",
+                "PRIMARY_KEY": [
+                    "accounts.account_id"
+                ],
+                "FOREIGN_KEY": [],
+                "Columns": [
+                    {
+                        "Name": "account_id",
+                        "ColumnDescription": "Unique identifier for the account in the system.",
+                        "DataAccess": "accountId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "account_name",
+                        "ColumnDescription": "Name of the account.",
+                        "DataAccess": "accountName",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "account_type",
+                        "ColumnDescription": "Type of the account.",
+                        "DataAccess": "accountType",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "balance",
+                        "ColumnDescription": "Balance of the account.",
+                        "DataAccess": "balance",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "opening_date",
+                        "ColumnDescription": "Opening date of the account.",
+                        "DataAccess": "openingDate",
+                        "ElementType": "Date",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "contact_email",
+                        "ColumnDescription": "Email contact of the account.",
+                        "DataAccess": "contactEmail",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "contact_phone",
+                        "ColumnDescription": "Phone contact of the account.",
+                        "DataAccess": "contactPhone",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    }
+                ]
+            },
+            {
+                "DataTableId": "03042024-104815506-acd9bc12-2e4a-4f1d-8b3e_transactions",
+                "DataTableName": "transactions",
+                "WorkspaceId": "25042023-131148176-c521c303-7900-443e-af2e-e2f3d6cebdb8",
+                "WorkspaceName": "Transaction_info",
+                "TableDescription": "Table containing transaction details",
+                "PRIMARY_KEY": [
+                    "transactions.transaction_id"
+                ],
+                "FOREIGN_KEY": [
+                    
+                        
+                        "accounts.account_id"
+                    
+                ],
+                "Columns": [
+                    {
+                        "Name": "transaction_id",
+                        "ColumnDescription": "Unique identifier for the transaction.",
+                        "DataAccess": "transactionId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "account_id",
+                        "ColumnDescription": "Identifier for the account associated with the transaction.",
+                        "DataAccess": "accountId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "transaction_date",
+                        "ColumnDescription": "Date of the transaction.",
+                        "DataAccess": "transactionDate",
+                        "ElementType": "Date",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "transaction_type",
+                        "ColumnDescription": "Type of the transaction.",
+                        "DataAccess": "transactionType",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "amount",
+                        "ColumnDescription": "Amount of the transaction.",
+                        "DataAccess": "amount",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "description",
+                        "ColumnDescription": "Description of the transaction.",
+                        "DataAccess": "description",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    }
+                ]
+            },
+            {
+                "DataTableId": "03042024-104815506-acd9bc12-2e4a-4f1d-8b3e_invoices",
+                "DataTableName": "invoices",
+                "WorkspaceId": "25042023-131148176-c521c303-7900-443e-af2e-e2f3d6cebdb8",
+                "WorkspaceName": "invoice_info",
+                "TableDescription": "Table containing invoice details",
+                "PRIMARY_KEY": [
+                    "invoices.invoice_id"
+                ],
+                "FOREIGN_KEY": [
+                    
+                       
+                        "customers.customer_id"
+                    
+                ],
+                "Columns": [
+                    {
+                        "Name": "invoice_id",
+                        "ColumnDescription": "Unique identifier for the invoice.",
+                        "DataAccess": "invoiceId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "customer_id",
+                        "ColumnDescription": "Identifier for the customer associated with the invoice.",
+                        "DataAccess": "customerId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "invoice_date",
+                        "ColumnDescription": "Date of the invoice.",
+                        "DataAccess": "invoiceDate",
+                        "ElementType": "Date",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "due_date",
+                        "ColumnDescription": "Due date of the invoice.",
+                        "DataAccess": "dueDate",
+                        "ElementType": "Date",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "total_amount",
+                        "ColumnDescription": "Total amount of the invoice.",
+                        "DataAccess": "totalAmount",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "status",
+                        "ColumnDescription": "Status of the invoice.",
+                        "DataAccess": "status",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    }
+                ]
+            },
+            {
+                "DataTableId": "03042024-104815506-acd9bc12-2e4a-4f1d-8b3e_vendors",
+                "DataTableName": "vendors",
+                "WorkspaceId": "25042023-131148176-c521c303-7900-443e-af2e-e2f3d6cebdb8",
+                "WorkspaceName": "vendor_info",
+                "TableDescription": "Table containing vendor details",
+                "PRIMARY_KEY": [
+                    "vendors.vendor_id"
+                ],
+                "FOREIGN_KEY": [
+                    
+                        
+                         "us_states.state_id"
+                    
+                ],
+                "Columns": [
+                    {
+                        "Name": "vendor_id",
+                        "ColumnDescription": "Unique identifier for the vendor.",
+                        "DataAccess": "vendorId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "vendor_name",
+                        "ColumnDescription": "Name of the vendor.",
+                        "DataAccess": "vendorName",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "contact_email",
+                        "ColumnDescription": "Email contact for the vendor.",
+                        "DataAccess": "contactEmail",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "contact_phone",
+                        "ColumnDescription": "Phone contact for the vendor.",
+                        "DataAccess": "contactPhone",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "address",
+                        "ColumnDescription": "Address of the vendor.",
+                        "DataAccess": "address",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "city",
+                        "ColumnDescription": "City of the vendor.",
+                        "DataAccess": "city",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "state_id",
+                        "ColumnDescription": "State ID of the vendor's location.",
+                        "DataAccess": "stateId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "postal_code",
+                        "ColumnDescription": "Postal code of the vendor's location.",
+                        "DataAccess": "postalCode",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "country",
+                        "ColumnDescription": "Country of the vendor.",
+                        "DataAccess": "country",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    }
+                ]
+            },
+            {
+                "DataTableId": "03042024-104815506-acd9bc12-2e4a-4f1d-8b3e_employees",
+                "DataTableName": "employees",
+                "WorkspaceId": "25042023-131148176-c521c303-7900-443e-af2e-e2f3d6cebdb8",
+                "WorkspaceName": "employee_info",
+                "TableDescription": "Table containing employee details",
+                "PRIMARY_KEY": [
+                    "employees.employee_id"
+                ],
+                "FOREIGN_KEY": [
+                    
+                        
+                        
+                    
+                ],
+                "Columns": [
+                    {
+                        "Name": "employee_id",
+                        "ColumnDescription": "Unique identifier for the employee.",
+                        "DataAccess": "employeeId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "last_name",
+                        "ColumnDescription": "Last name of the employee.",
+                        "DataAccess": "lastName",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "first_name",
+                        "ColumnDescription": "First name of the employee.",
+                        "DataAccess": "firstName",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "title",
+                        "ColumnDescription": "Title of the employee.",
+                        "DataAccess": "title",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "title_of_courtesy",
+                        "ColumnDescription": "Title of courtesy for the employee.",
+                        "DataAccess": "titleOfCourtesy",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "birth_date",
+                        "ColumnDescription": "Birth date of the employee.",
+                        "DataAccess": "birthDate",
+                        "ElementType": "Date",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "hire_date",
+                        "ColumnDescription": "Hire date of the employee.",
+                        "DataAccess": "hireDate",
+                        "ElementType": "Date",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "address",
+                        "ColumnDescription": "Address of the employee.",
+                        "DataAccess": "address",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "city",
+                        "ColumnDescription": "City of the employee.",
+                        "DataAccess": "city",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "region",
+                        "ColumnDescription": "Region of the employee.",
+                        "DataAccess": "region",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "postal_code",
+                        "ColumnDescription": "Postal code of the employee's location.",
+                        "DataAccess": "postalCode",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "country",
+                        "ColumnDescription": "Country of the employee.",
+                        "DataAccess": "country",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "home_phone",
+                        "ColumnDescription": "Home phone number of the employee.",
+                        "DataAccess": "homePhone",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "extension",
+                        "ColumnDescription": "Extension number of the employee.",
+                        "DataAccess": "extension",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "photo",
+                        "ColumnDescription": "Photo of the employee.",
+                        "DataAccess": "photo",
+                        "ElementType": "Binary",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "notes",
+                        "ColumnDescription": "Notes about the employee.",
+                        "DataAccess": "notes",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "reports_to",
+                        "ColumnDescription": "ID of the employee's supervisor.",
+                        "DataAccess": "reportsTo",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "photo_path",
+                        "ColumnDescription": "Path to the employee's photo.",
+                        "DataAccess": "photoPath",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    }
+                ]
+            },
+            {
+                "DataTableId": "03042024-104815506-acd9bc12-2e4a-4f1d-8b3e_expenses",
+                "DataTableName": "expenses",
+                "WorkspaceId": "13032024-131148176-c521c303-7900-443e-af2e-e2f3d6cebdb8",
+                "WorkspaceName": "expense_info",
+                "TableDescription": "Table containing expense details",
+                "PRIMARY_KEY": [
+                    "expenses.expense_id"
+                ],
+                "FOREIGN_KEY": [
+                    "vendors.vendor_id"
+                ],
+                "Columns": [
+                    {
+                        "Name": "expense_id",
+                        "ColumnDescription": "Unique identifier for the expense.",
+                        "DataAccess": "expenseId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "vendor_id",
+                        "ColumnDescription": "Identifier for the vendor associated with the expense.",
+                        "DataAccess": "vendorId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "expense_date",
+                        "ColumnDescription": "Date of the expense.",
+                        "DataAccess": "expenseDate",
+                        "ElementType": "Date",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "amount",
+                        "ColumnDescription": "Amount of the expense.",
+                        "DataAccess": "amount",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "description",
+                        "ColumnDescription": "Description of the expense.",
+                        "DataAccess": "description",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    }
+                ]
+            },
+            {
+                "DataTableId": "03042024-104815506-acd9bc12-2e4a-4f1d-8b3e_budgets",
+                "DataTableName": "budgets",
+                "WorkspaceId": "13032024-131148176-c521c303-7900-443e-af2e-e2f3d6cebdb8",
+                "WorkspaceName": "budget_info",
+                "TableDescription": "Table containing budget details",
+                "PRIMARY_KEY": [
+                    "budgets.budget_id"
+                ],
+                "FOREIGN_KEY": [],
+                "Columns": [
+                    {
+                        "Name": "budget_id",
+                        "ColumnDescription": "Unique identifier for the budget.",
+                        "DataAccess": "budgetId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "department",
+                        "ColumnDescription": "Name of the department.",
+                        "DataAccess": "department",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "year",
+                        "ColumnDescription": "Year of the budget.",
+                        "DataAccess": "year",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "budget_amount",
+                        "ColumnDescription": "Amount allocated for the budget.",
+                        "DataAccess": "budgetAmount",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    }
+                ]
+            },
+            {
+                "DataTableId": "03042024-104815506-acd9bc12-2e4a-4f1d-8b3e_payroll",
+                "DataTableName": "payroll",
+                "WorkspaceId": "25042023-131148176-c521c303-7900-443e-af2e-e2f3d6cebdb8",
+                "WorkspaceName": "payroll_info",
+                "TableDescription": "Table containing payroll details",
+                "PRIMARY_KEY": [
+                    "payroll.payroll_id"
+                ],
+                "FOREIGN_KEY": [
+                    "employees.employee_id"
+                ],
+                "Columns": [
+                    {
+                        "Name": "payroll_id",
+                        "ColumnDescription": "Unique identifier for the payroll entry.",
+                        "DataAccess": "payrollId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "employee_id",
+                        "ColumnDescription": "Identifier for the employee associated with the payroll entry.",
+                        "DataAccess": "employeeId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "pay_date",
+                        "ColumnDescription": "Date of payment.",
+                        "DataAccess": "payDate",
+                        "ElementType": "Date",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "amount",
+                        "ColumnDescription": "Amount paid in the payroll entry.",
+                        "DataAccess": "amount",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "description",
+                        "ColumnDescription": "Description of the payroll entry.",
+                        "DataAccess": "description",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    }
+                ]
+            },
+            {
+                "DataTableId": "03042024-104815506-acd9bc12-2e4a-4f1d-8b3e_departments",
+                "DataTableName": "departments",
+                "WorkspaceId": "25042023-131148176-c521c303-7900-443e-af2e-e2f3d6cebdb8",
+                "WorkspaceName": "departments_info",
+                "TableDescription": "Table containing department details",
+                "PRIMARY_KEY": [
+                    "departments.department_id"
+                ],
+                "FOREIGN_KEY": [
+                    
+                ],
+                "Columns": [
+                    {
+                        "Name": "department_id",
+                        "ColumnDescription": "Unique identifier for the department.",
+                        "DataAccess": "departmentId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "department_name",
+                        "ColumnDescription": "Name of the department.",
+                        "DataAccess": "departmentName",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "manager_id",
+                        "ColumnDescription": "Identifier for the manager of the department.",
+                        "DataAccess": "managerId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "location",
+                        "ColumnDescription": "Location of the department.",
+                        "DataAccess": "location",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    }
+                ]
+            },
+            {
+                "DataTableId": "03042024-104815506-acd9bc12-2e4a-4f1d-8b3e_loans",
+                "DataTableName": "loans",
+                "WorkspaceId": "25042023-131148176-c521c303-7900-443e-af2e-e2f3d6cebdb8",
+                "WorkspaceName": "loans_info",
+                "TableDescription": "Table containing loan details",
+                "PRIMARY_KEY": [
+                    "loans.loan_id"
+                ],
+                "FOREIGN_KEY": [
+                    
+                ],
+                "Columns": [
+                    {
+                        "Name": "loan_id",
+                        "ColumnDescription": "Unique identifier for the loan.",
+                        "DataAccess": "loanId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "customer_id",
+                        "ColumnDescription": "Identifier for the customer associated with the loan.",
+                        "DataAccess": "customerId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "loan_amount",
+                        "ColumnDescription": "Amount of the loan.",
+                        "DataAccess": "loanAmount",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "loan_date",
+                        "ColumnDescription": "Date of the loan.",
+                        "DataAccess": "loanDate",
+                        "ElementType": "Date",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "interest_rate",
+                        "ColumnDescription": "Interest rate of the loan.",
+                        "DataAccess": "interestRate",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "status",
+                        "ColumnDescription": "Status of the loan.",
+                        "DataAccess": "status",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    }
+                ]
+            },
+            {
+                "DataTableId": "03042024-104815506-acd9bc12-2e4a-4f1d-8b3e_investments",
+                "DataTableName": "investments",
+                "WorkspaceId": "25042023-131148176-c521c303-7900-443e-af2e-e2f3d6cebdb8",
+                "WorkspaceName": "investments_info",
+                "TableDescription": "Table containing investment details",
+                "PRIMARY_KEY": [
+                    "investments.investment_id"
+                ],
+                "FOREIGN_KEY": [
+                    "accounts.account_id"
+                ],
+                "Columns": [
+                    {
+                        "Name": "investment_id",
+                        "ColumnDescription": "Unique identifier for the investment.",
+                        "DataAccess": "investmentId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "account_id",
+                        "ColumnDescription": "Identifier for the account associated with the investment.",
+                        "DataAccess": "accountId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "investment_name",
+                        "ColumnDescription": "Name of the investment.",
+                        "DataAccess": "investmentName",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "investment_type",
+                        "ColumnDescription": "Type of the investment.",
+                        "DataAccess": "investmentType",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "purchase_date",
+                        "ColumnDescription": "Date of purchase of the investment.",
+                        "DataAccess": "purchaseDate",
+                        "ElementType": "Date",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "amount",
+                        "ColumnDescription": "Amount of the investment.",
+                        "DataAccess": "amount",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    }
+                ]
+            },
+            {
+                "DataTableId": "03042024-104815506-acd9bc12-2e4a-4f1d-8b3e_insurance_policies",
+                "DataTableName": "insurance_policies",
+                "WorkspaceId": "25042023-131148176-c521c303-7900-443e-af2e-e2f3d6cebdb8",
+                "WorkspaceName": "insurance_info",
+                "TableDescription": "Table containing insurance policy details",
+                "PRIMARY_KEY": [
+                    "insurance_policies.policy_id"
+                ],
+                "FOREIGN_KEY": [
+                    "customers.customer_id"
+                ],
+                "Columns": [
+                    {
+                        "Name": "policy_id",
+                        "ColumnDescription": "Unique identifier for the insurance policy.",
+                        "DataAccess": "policyId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "customer_id",
+                        "ColumnDescription": "Identifier for the customer associated with the insurance policy.",
+                        "DataAccess": "customerId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "policy_holder_name",
+                        "ColumnDescription": "Name of the policy holder.",
+                        "DataAccess": "policyHolderName",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "policy_type",
+                        "ColumnDescription": "Type of the insurance policy.",
+                        "DataAccess": "policyType",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "premium",
+                        "ColumnDescription": "Premium amount of the insurance policy.",
+                        "DataAccess": "premium",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "start_date",
+                        "ColumnDescription": "Start date of the insurance policy.",
+                        "DataAccess": "startDate",
+                        "ElementType": "Date",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "end_date",
+                        "ColumnDescription": "End date of the insurance policy.",
+                        "DataAccess": "endDate",
+                        "ElementType": "Date",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    }
+                ]
+            },
+            {
+                "DataTableId": "03042024-104815506-acd9bc12-2e4a-4f1d-8b3e_tax_records",
+                "DataTableName": "tax_records",
+                "WorkspaceId": "25042023-131148176-c521c303-7900-443e-af2e-e2f3d6cebdb8",
+                "WorkspaceName": "records_info",
+                "TableDescription": "Table containing tax record details",
+                "PRIMARY_KEY": [
+                    "tax_records.record_id"
+                ],
+                "FOREIGN_KEY": [
+                    "customers.customer_id"
+                ],
+                "Columns": [
+                    {
+                        "Name": "record_id",
+                        "ColumnDescription": "Unique identifier for the tax record.",
+                        "DataAccess": "recordId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "customer_id",
+                        "ColumnDescription": "Identifier for the customer associated with the tax record.",
+                        "DataAccess": "customerId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "tax_year",
+                        "ColumnDescription": "Tax year of the tax record.",
+                        "DataAccess": "taxYear",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "total_income",
+                        "ColumnDescription": "Total income in the tax record.",
+                        "DataAccess": "totalIncome",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "tax_paid",
+                        "ColumnDescription": "Tax paid in the tax record.",
+                        "DataAccess": "taxPaid",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    }
+                ]
+            },
+            {
+                "DataTableId": "03042024-104815506-acd9bc12-2e4a-4f1d-8b3e_clients",
+                "DataTableName": "clients",
+                "WorkspaceId": "25042023-131148176-c521c303-7900-443e-af2e-e2f3d6cebdb8",
+                "WorkspaceName": "client_info",
+                "TableDescription": "Table containing client details",
+                "PRIMARY_KEY": [
+                    "clients.client_id"
+                ],
+                "FOREIGN_KEY": [
+                    "us_states.state_id"
+                ],
+                "Columns": [
+                    {
+                        "Name": "client_id",
+                        "ColumnDescription": "Unique identifier for the client.",
+                        "DataAccess": "clientId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "client_name",
+                        "ColumnDescription": "Name of the client.",
+                        "DataAccess": "clientName",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "contact_name",
+                        "ColumnDescription": "Name of the contact person for the client.",
+                        "DataAccess": "contactName",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "contact_email",
+                        "ColumnDescription": "Email of the contact person for the client.",
+                        "DataAccess": "contactEmail",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "contact_phone",
+                        "ColumnDescription": "Phone number of the contact person for the client.",
+                        "DataAccess": "contactPhone",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "address",
+                        "ColumnDescription": "Address of the client.",
+                        "DataAccess": "address",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "city",
+                        "ColumnDescription": "City of the client.",
+                        "DataAccess": "city",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "state_id",
+                        "ColumnDescription": "Identifier for the state associated with the client's address.",
+                        "DataAccess": "stateId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "postal_code",
+                        "ColumnDescription": "Postal code of the client's address.",
+                        "DataAccess": "postalCode",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "country",
+                        "ColumnDescription": "Country of the client.",
+                        "DataAccess": "country",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    }
+                ]
+            },
+            {
+                "DataTableId": "03042024-104815506-acd9bc12-2e4a-4f1d-8b3e_contracts",
+                "DataTableName": "contracts",
+                "WorkspaceId": "25042023-131148176-c521c303-7900-443e-af2e-e2f3d6cebdb8",
+                "WorkspaceName": "contracts_info",
+                "TableDescription": "Table containing contract details",
+                "PRIMARY_KEY": [
+                    "contracts.contract_id"
+                ],
+                "FOREIGN_KEY": [
+                    "clients.client_id"
+                ],
+                "Columns": [
+                    {
+                        "Name": "contract_id",
+                        "ColumnDescription": "Unique identifier for the contract.",
+                        "DataAccess": "contractId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "contract_name",
+                        "ColumnDescription": "Name of the contract.",
+                        "DataAccess": "contractName",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "client_id",
+                        "ColumnDescription": "Identifier for the client associated with the contract.",
+                        "DataAccess": "clientId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "start_date",
+                        "ColumnDescription": "Start date of the contract.",
+                        "DataAccess": "startDate",
+                        "ElementType": "Date",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "end_date",
+                        "ColumnDescription": "End date of the contract.",
+                        "DataAccess": "endDate",
+                        "ElementType": "Date",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "amount",
+                        "ColumnDescription": "Amount of the contract.",
+                        "DataAccess": "amount",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "status",
+                        "ColumnDescription": "Status of the contract.",
+                        "DataAccess": "status",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    }
+                ]
+            },
+            {
+                "DataTableId": "03042024-104815506-acd9bc12-2e4a-4f1d-8b3e_contract_payments",
+                "DataTableName": "contract_payments",
+                "WorkspaceId": "25042023-131148176-c521c303-7900-443e-af2e-e2f3d6cebdb8",
+                "WorkspaceName": "contracts_info",
+                "TableDescription": "Table containing contract payment details",
+                "PRIMARY_KEY": [
+                    "contract_payments.payment_id"
+                ],
+                "FOREIGN_KEY": [
+                    "contracts.contract_id"
+                ],
+                "Columns": [
+                    {
+                        "Name": "payment_id",
+                        "ColumnDescription": "Unique identifier for the contract payment.",
+                        "DataAccess": "paymentId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "contract_id",
+                        "ColumnDescription": "Identifier for the contract associated with the payment.",
+                        "DataAccess": "contractId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "payment_date",
+                        "ColumnDescription": "Date of the payment.",
+                        "DataAccess": "paymentDate",
+                        "ElementType": "Date",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "amount",
+                        "ColumnDescription": "Amount of the payment.",
+                        "DataAccess": "amount",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    }
+                ]
+            },
+            {
+                "DataTableId": "03042024-104815506-acd9bc12-2e4a-4f1d-8b3e_contract_services",
+                "DataTableName": "contract_services",
+                "WorkspaceId": "25042023-131148176-c521c303-7900-443e-af2e-e2f3d6cebdb8",
+                "WorkspaceName": "contracts_info",
+                "TableDescription": "Table containing contract service details",
+                "PRIMARY_KEY": [
+                    "contract_services.service_id"
+                ],
+                "FOREIGN_KEY": [
+                    "contracts.contract_id"
+                ],
+                "Columns": [
+                    {
+                        "Name": "service_id",
+                        "ColumnDescription": "Unique identifier for the contract service.",
+                        "DataAccess": "serviceId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "contract_id",
+                        "ColumnDescription": "Identifier for the contract associated with the service.",
+                        "DataAccess": "contractId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "service_name",
+                        "ColumnDescription": "Name of the service.",
+                        "DataAccess": "serviceName",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "description",
+                        "ColumnDescription": "Description of the service.",
+                        "DataAccess": "description",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "rate",
+                        "ColumnDescription": "Rate of the service.",
+                        "DataAccess": "rate",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    }
+                ]
+            },
+            {
+                "DataTableId": "03042024-104815506-acd9bc12-2e4a-4f1d-8b3e_contract_employees",
+                "DataTableName": "contract_employees",
+                "WorkspaceId": "25042023-131148176-c521c303-7900-443e-af2e-e2f3d6cebdb8",
+                "WorkspaceName": "contracts_info",
+                "TableDescription": "Table containing contract employee details",
+                "PRIMARY_KEY": [
+                    "contract_employees.contract_employee_id"
+                ],
+                "FOREIGN_KEY": [
+                    "contracts.contract_id",
+                    "employees.employee_id"
+                ],
+                "Columns": [
+                    {
+                        "Name": "contract_employee_id",
+                        "ColumnDescription": "Unique identifier for the contract employee entry.",
+                        "DataAccess": "contractEmployeeId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "contract_id",
+                        "ColumnDescription": "Identifier for the contract associated with the employee.",
+                        "DataAccess": "contractId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "employee_id",
+                        "ColumnDescription": "Identifier for the employee associated with the contract.",
+                        "DataAccess": "employeeId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "start_date",
+                        "ColumnDescription": "Start date of the employee's contract.",
+                        "DataAccess": "startDate",
+                        "ElementType": "Date",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "end_date",
+                        "ColumnDescription": "End date of the employee's contract.",
+                        "DataAccess": "endDate",
+                        "ElementType": "Date",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    }
+                ]
+            },
+            {
+                "DataTableId": "03042024-104815506-acd9bc12-2e4a-4f1d-8b3e_contract_attachments",
+                "DataTableName": "contract_attachments",
+                "WorkspaceId": "25042023-131148176-c521c303-7900-443e-af2e-e2f3d6cebdb8",
+                "WorkspaceName": "contracts_info",
+                "TableDescription": "Table containing contract attachment details",
+                "PRIMARY_KEY": [
+                    "contract_attachments.attachment_id"
+                ],
+                "FOREIGN_KEY": [
+                    "contracts.contract_id"
+                ],
+                "Columns": [
+                    {
+                        "Name": "attachment_id",
+                        "ColumnDescription": "Unique identifier for the contract attachment.",
+                        "DataAccess": "attachmentId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "contract_id",
+                        "ColumnDescription": "Identifier for the contract associated with the attachment.",
+                        "DataAccess": "contractId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "attachment_name",
+                        "ColumnDescription": "Name of the attachment.",
+                        "DataAccess": "attachmentName",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "attachment_file",
+                        "ColumnDescription": "Binary data of the attachment file.",
+                        "DataAccess": "attachmentFile",
+                        "ElementType": "Binary",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    }
+                ]
+            },
+            {
+                "DataTableId": "03042024-104815506-acd9bc12-2e4a-4f1d-8b3e_schedules",
+                "DataTableName": "schedules",
+                "WorkspaceId": "25042023-131148176-c521c303-7900-443e-af2e-e2f3d6cebdb8",
+                "WorkspaceName": "schedule_info",
+                "TableDescription": "Table containing schedule details",
+                "PRIMARY_KEY": [
+                    "schedules.schedule_id"
+                ],
+                "FOREIGN_KEY": [
+                    "employees.employee_id"
+                ],
+                "Columns": [
+                    {
+                        "Name": "schedule_id",
+                        "ColumnDescription": "Unique identifier for the schedule.",
+                        "DataAccess": "scheduleId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "schedule_name",
+                        "ColumnDescription": "Name of the schedule.",
+                        "DataAccess": "scheduleName",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "start_date",
+                        "ColumnDescription": "Start date of the schedule.",
+                        "DataAccess": "startDate",
+                        "ElementType": "Date",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "end_date",
+                        "ColumnDescription": "End date of the schedule.",
+                        "DataAccess": "endDate",
+                        "ElementType": "Date",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "description",
+                        "ColumnDescription": "Description of the schedule.",
+                        "DataAccess": "description",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "location",
+                        "ColumnDescription": "Location of the schedule.",
+                        "DataAccess": "location",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "organizer_id",
+                        "ColumnDescription": "Identifier for the organizer of the schedule.",
+                        "DataAccess": "organizerId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    }
+                ]
+            },
+            {
+                "DataTableId": "03042024-104815506-acd9bc12-2e4a-4f1d-8b3e_schedule_attendees",
+                "DataTableName": "schedule_attendees",
+                "WorkspaceId": "25042023-131148176-c521c303-7900-443e-af2e-e2f3d6cebdb8",
+                "WorkspaceName": "schedule_info",
+                "TableDescription": "Table containing schedule attendee details",
+                "PRIMARY_KEY": [
+                    "schedule_attendees.attendee_id"
+                ],
+                "FOREIGN_KEY": [
+                    "schedules.schedule_id"
+                ],
+                "Columns": [
+                    {
+                        "Name": "attendee_id",
+                        "ColumnDescription": "Unique identifier for the schedule attendee.",
+                        "DataAccess": "attendeeId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "schedule_id",
+                        "ColumnDescription": "Identifier for the schedule associated with the attendee.",
+                        "DataAccess": "scheduleId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "attendee_name",
+                        "ColumnDescription": "Name of the attendee.",
+                        "DataAccess": "attendeeName",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "attendee_email",
+                        "ColumnDescription": "Email of the attendee.",
+                        "DataAccess": "attendeeEmail",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    }
+                ]
+            },
+            {
+                "DataTableId": "03042024-104815506-acd9bc12-2e4a-4f1d-8b3e_appointments",
+                "DataTableName": "appointments",
+                "WorkspaceId": "25042023-131148176-c521c303-7900-443e-af2e-e2f3d6cebdb8",
+                "WorkspaceName": "schedule_info",
+                "TableDescription": "Table containing appointment details",
+                "PRIMARY_KEY": [
+                    "appointments.appointment_id"
+                ],
+                "FOREIGN_KEY": [
+                    "schedules.schedule_id",
+                    "schedule_attendees.attendee_id"
+                ],
+                "Columns": [
+                    {
+                        "Name": "appointment_id",
+                        "ColumnDescription": "Unique identifier for the appointment.",
+                        "DataAccess": "appointmentId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "schedule_id",
+                        "ColumnDescription": "Identifier for the schedule associated with the appointment.",
+                        "DataAccess": "scheduleId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "appointment_date",
+                        "ColumnDescription": "Date of the appointment.",
+                        "DataAccess": "appointmentDate",
+                        "ElementType": "Date",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "appointment_time",
+                        "ColumnDescription": "Time of the appointment.",
+                        "DataAccess": "appointmentTime",
+                        "ElementType": "Time",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "description",
+                        "ColumnDescription": "Description of the appointment.",
+                        "DataAccess": "description",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "attendee_id",
+                        "ColumnDescription": "Identifier for the attendee associated with the appointment.",
+                        "DataAccess": "attendeeId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    }
+                ]
+            },
+            {
+                "DataTableId": "03042024-104815506-acd9bc12-2e4a-4f1d-8b3e_reminders",
+                "DataTableName": "reminders",
+                "WorkspaceId": "25042023-131148176-c521c303-7900-443e-af2e-e2f3d6cebdb8",
+                "WorkspaceName": "schedule_info",
+                "TableDescription": "Table containing reminder details",
+                "PRIMARY_KEY": [
+                    "reminders.reminder_id"
+                ],
+                "FOREIGN_KEY": [
+                    "schedules.schedule_id"
+                ],
+                "Columns": [
+                    {
+                        "Name": "reminder_id",
+                        "ColumnDescription": "Unique identifier for the reminder.",
+                        "DataAccess": "reminderId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "schedule_id",
+                        "ColumnDescription": "Identifier for the schedule associated with the reminder.",
+                        "DataAccess": "scheduleId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "reminder_date",
+                        "ColumnDescription": "Date of the reminder.",
+                        "DataAccess": "reminderDate",
+                        "ElementType": "Date",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "reminder_time",
+                        "ColumnDescription": "Time of the reminder.",
+                        "DataAccess": "reminderTime",
+                        "ElementType": "Time",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "description",
+                        "ColumnDescription": "Description of the reminder.",
+                        "DataAccess": "description",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    }
+                ]
+            },
+            {
+                "DataTableId": "03042024-104815506-acd9bc12-2e4a-4f1d-8b3e_grants",
+                "DataTableName": "grants",
+                "WorkspaceId": "25042023-131148176-c521c303-7900-443e-af2e-e2f3d6cebdb8",
+                "WorkspaceName": "grants_info",
+                "TableDescription": "Table containing grant details",
+                "PRIMARY_KEY": [
+                    "grants.grant_id"
+                ],
+                "FOREIGN_KEY": [],
+                "Columns": [
+                    {
+                        "Name": "grant_id",
+                        "ColumnDescription": "Unique identifier for the grant.",
+                        "DataAccess": "grantId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "grant_name",
+                        "ColumnDescription": "Name of the grant.",
+                        "DataAccess": "grantName",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "grant_description",
+                        "ColumnDescription": "Description of the grant.",
+                        "DataAccess": "grantDescription",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "grant_amount",
+                        "ColumnDescription": "Amount of the grant.",
+                        "DataAccess": "grantAmount",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "start_date",
+                        "ColumnDescription": "Start date of the grant.",
+                        "DataAccess": "startDate",
+                        "ElementType": "Date",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "end_date",
+                        "ColumnDescription": "End date of the grant.",
+                        "DataAccess": "endDate",
+                        "ElementType": "Date",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    }
+                ]
+            },
+            {
+                "DataTableId": "03042024-104815506-acd9bc12-2e4a-4f1d-8b3e_grant_recipients",
+                "DataTableName": "grant_recipients",
+                "WorkspaceId": "25042023-131148176-c521c303-7900-443e-af2e-e2f3d6cebdb8",
+                "WorkspaceName": "grants_info",
+                "TableDescription": "Table containing grant recipient details",
+                "PRIMARY_KEY": [
+                    "grant_recipients.recipient_id"
+                ],
+                "FOREIGN_KEY": [
+                    "grants.grant_id"
+                ],
+                "Columns": [
+                    {
+                        "Name": "recipient_id",
+                        "ColumnDescription": "Unique identifier for the grant recipient.",
+                        "DataAccess": "recipientId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "grant_id",
+                        "ColumnDescription": "Identifier for the grant associated with the recipient.",
+                        "DataAccess": "grantId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "recipient_name",
+                        "ColumnDescription": "Name of the recipient.",
+                        "DataAccess": "recipientName",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "recipient_email",
+                        "ColumnDescription": "Email of the recipient.",
+                        "DataAccess": "recipientEmail",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "recipient_organization",
+                        "ColumnDescription": "Organization of the recipient.",
+                        "DataAccess": "recipientOrganization",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    }
+                ]
+            },
+            {
+                "DataTableId": "03042024-104815506-acd9bc12-2e4a-4f1d-8b3e_grant_payments",
+                "DataTableName": "grant_payments",
+                "WorkspaceId": "25042023-131148176-c521c303-7900-443e-af2e-e2f3d6cebdb8",
+                "WorkspaceName": "grants_info",
+                "TableDescription": "Table containing grant payment details",
+                "PRIMARY_KEY": [
+                    "grant_payments.payment_id"
+                ],
+                "FOREIGN_KEY": [
+                    "grants.grant_id"
+                ],
+                "Columns": [
+                    {
+                        "Name": "payment_id",
+                        "ColumnDescription": "Unique identifier for the grant payment.",
+                        "DataAccess": "paymentId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "grant_id",
+                        "ColumnDescription": "Identifier for the grant associated with the payment.",
+                        "DataAccess": "grantId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "payment_date",
+                        "ColumnDescription": "Date of the payment.",
+                        "DataAccess": "paymentDate",
+                        "ElementType": "Date",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "amount",
+                        "ColumnDescription": "Amount of the payment.",
+                        "DataAccess": "amount",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "description",
+                        "ColumnDescription": "Description of the payment.",
+                        "DataAccess": "description",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    }
+                ]
+            },
+            {
+                "DataTableId": "03042024-104815506-acd9bc12-2e4a-4f1d-8b3e_grant_reports",
+                "DataTableName": "grant_reports",
+                "WorkspaceId": "25042023-131148176-c521c303-7900-443e-af2e-e2f3d6cebdb8",
+                "WorkspaceName": "grants_info",
+                "TableDescription": "Table containing grant report details",
+                "PRIMARY_KEY": [
+                    "grant_reports.report_id"
+                ],
+                "FOREIGN_KEY": [
+                    "grants.grant_id"
+                ],
+                "Columns": [
+                    {
+                        "Name": "report_id",
+                        "ColumnDescription": "Unique identifier for the grant report.",
+                        "DataAccess": "reportId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "grant_id",
+                        "ColumnDescription": "Identifier for the grant associated with the report.",
+                        "DataAccess": "grantId",
+                        "ElementType": "Number",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "report_date",
+                        "ColumnDescription": "Date of the report.",
+                        "DataAccess": "reportDate",
+                        "ElementType": "Date",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "report_file",
+                        "ColumnDescription": "Binary data of the report file.",
+                        "DataAccess": "reportFile",
+                        "ElementType": "Binary",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    },
+                    {
+                        "Name": "description",
+                        "ColumnDescription": "Description of the report.",
+                        "DataAccess": "description",
+                        "ElementType": "String",
+                        "PossibleValues": [],
+                        "IsPossibleValue": false
+                    }
+                ]
+            }
+        ]
+    }
+}
